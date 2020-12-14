@@ -1,0 +1,49 @@
+'''
+The machine learning workflow
+
+Data gathering >> Data processing >> Training a ML model >> Assessing results >> Repeat
+'''
+
+# We will use the Iris dataset for a classification
+
+import numpy as np
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+#import iris dataset from the scikit-learn package
+
+from sklearn import datasets
+
+iris = datasets.load_iris()
+
+#Data pre-processing (Visualize the data)
+
+#Select the first two features of the iris dataset (sepal_length,sepal_width)
+x = iris.data[:,:2]
+#Target is species_id
+y = iris.target
+
+#Plot the data
+plt.scatter(x[:,0],x[:,1], c=y, cmap=plt.cm.Set1)
+plt.xlabel('Sepal length'); plt.ylabel('Sepal width')
+
+#Princial component anaysis (PCA) for dimensionality reduction
+
+# Import the pca module from the sklearn package
+
+from sklearn.decomposition import PCA
+
+#We will do the PCA on the iris data and extract the first three principal components
+
+x_reduced = PCA(n_components=3).fit_transform(iris.data)
+
+#Plot the 3 principal components in a 3D plot
+from mpl_toolkits.mplot3d import Axes3D
+
+fig = plt.figure(1,figsize=(8,6))
+ax = Axes3D(fig,elev=-150, azim=110)
+ax.scatter(x_reduced[:,0],x_reduced[:,1],x_reduced[:,2],c=y,cmap=plt.cm.Set1,s=40)
+ax.set_title("First three PCA directions")
+ax.set_xlabel("1st eigenvector")
+ax.set_ylabel("2nd eigenvector")
+ax.set_zlabel("3rd eigenvector")
