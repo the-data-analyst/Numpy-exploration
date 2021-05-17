@@ -2,6 +2,8 @@
 The machine learning workflow
 
 Data gathering >> Data processing >> Training a ML model >> Assessing results >> Repeat
+
+The sklearn library contains a lot of efficient tools for machine learning and statistical modeling including classification, regression, clustering and dimensionality reduction.
 '''
 
 # We will use the Iris dataset for a classification
